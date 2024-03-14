@@ -1,0 +1,14 @@
+<h1 class="text-center text-success text-capitalize">all brands</h1>
+
+
+<div class="row row-cols-1 row-cols-md-2 py-5 g-4 ">
+    <div  *ngFor="let brands of allBrand" class="col-md-3">
+      <div class="card hover-shadow">
+        <img [src]="brands.image" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title text-center">{{brands.name}}</h5>
+        </div>
+      </div>
+    </div>
+ 
+  </div>

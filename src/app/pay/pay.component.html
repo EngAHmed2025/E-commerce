@@ -1,0 +1,19 @@
+
+
+<form class="w-75  container my-3" (ngSubmit)="addressFormSubmit()" [formGroup]="addressForm" >
+    <h1 class="text-capitalize">Pay now</h1>
+    <div class="mb-3"> 
+    <label>Details:</label>
+    <input formControlName="details" class="form-control" type="text">
+    </div>
+    <div class="mb-3">
+    <label>phone:</label>
+    <input formControlName="phone" class="form-control" type="text">
+    </div>
+    <div class="mb-3">
+    <label>city:</label>
+    <input formControlName="city" class="form-control" type="text">
+    </div>
+    <button type="submit" class="btn btn-success text-capitalize">pay</button>
+</form>
+

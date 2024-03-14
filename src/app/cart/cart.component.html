@@ -1,0 +1,45 @@
+
+    <div class="py-3">
+        <button (click)="clear()" class="btn  btn-success d-block mx-auto text-capitalize ">clear all cart</button>
+    </div>
+
+
+<div *ngFor="let item of CartItems " class="row align-items-center row container">
+<div class="col-md-2">
+<img class="w-100" [src]="item.product.imageCover">
+</div>
+<div class="col-md-8">
+<h1 class="h5">{{item.product.title}}</h1>
+<span class="text-success fw-bold">{{item.product.category.name}}</span>
+<div class="mb-3">
+    <span>Price:{{item.price}}EGP</span>
+    <div>
+        <i class="fa-solid fa-star" id="rate"></i>
+        <span>{{item.product.ratingsAverage}}</span>
+    </div>
+    <i (click)="RemoveItem(item.product._id)" class="fa-solid fa-trash text-danger fa-1x crousr"></i>
+</div>
+</div>
+
+<div class="col-md-2">
+<i (click)="UpdateItemsQunBtn('plus', item.count , item.product._id)" class="fa-solid fa-square-plus text-success h4 crousr "></i>
+{{item.count}}
+<i (click)="UpdateItemsQunBtn('Minus',item.count , item.product._id)" class="fa-solid fa-square-minus text-success h4 crousr"></i>
+</div>
+</div>
+
+<div class="border w-25 ms-auto table ">
+
+<table>
+    <tr>
+        <td>Subtotal:</td>
+        <td>{{totalPrice}}EGP</td>
+    </tr>
+    <tr>
+        <td><button [routerLink]="['/pay',cartId]" class="btn btn-success">Check out</button></td>
+       
+    </tr>
+</table>
+</div>
+
+

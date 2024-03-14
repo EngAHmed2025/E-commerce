@@ -1,0 +1,23 @@
+
+<div *ngIf="HomeData" class="row">
+    <div  *ngFor="let product of HomeData" class="col-md-2  mb-4">
+        <div [routerLink]="['/DetailsProduct',product._id]" class="product">
+            <img class="w-100" [src]="product.imageCover">
+            <span class="fa-sm text-success">{{product.category.name}}</span>
+            <h1 class="h5 fw-bold">{{product.title.split(" ").slice(0,2).join(" ")}}</h1>
+            <div class="d-flex justify-content-between">
+                <span>{{product.price}}EGP</span>
+                <div>
+                    <i class="fa-solid fa-star"></i>
+                    <span>{{product.ratingsAverage}}</span>
+                </div>
+                
+            </div>
+        </div>
+        <div class="layer d-flex justify-content-between">
+            <button (click)="btnAdd(product._id)" class="btn btn-success">Add<i class="fa fa-solid fa-cart-shopping p-1"></i></button>
+            <i *ngIf="!wishListData.includes(product._id)" (click)="addWish(product._id)" class="fa-regular fa-2x fa-heart "></i>
+            <i *ngIf="wishListData.includes(product._id)" (click)="removewisList(product._id)" class="fa fa-solid fa-heart fa-2x"></i>
+        </div>
+    </div>
+</div>

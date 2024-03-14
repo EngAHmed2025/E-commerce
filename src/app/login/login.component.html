@@ -1,0 +1,121 @@
+
+
+<div class="w-75 my-3 mx-auto">
+    <h2 class="text-success">Login Now :</h2>
+    <h1 *ngIf="errMassge" class=" alert alert-danger">{{errMassge}}</h1>
+    <form [formGroup]="loginForm" (ngSubmit)="loginFormMethod()">
+     
+        <div class="mb-3">
+            <label for="Email"> Email:</label>
+            <input formControlName="email" class="form-control" type="email">
+            <div *ngIf="loginForm.get('email')?.errors && loginForm.get('email')?.touched "
+                class="alert alert-danger">
+                <p *ngIf="loginForm.get('email')?.errors?.['required']">email is required.</p>
+                <p *ngIf="loginForm.get('email')?.errors?.['email']">email should vaild </p>
+            </div>
+        </div>
+        <div class="mb-3">
+            <label for="Password">password:</label>
+            <input formControlName="password" class="form-control" type="password">
+            <div *ngIf="loginForm.get('password')?.errors && loginForm.get('password')?.touched "
+                class="alert alert-danger">
+                <p *ngIf="loginForm.get('password')?.errors?.['required']">password is required.</p>
+                <p *ngIf="loginForm.get('password')?.errors?.['pattern']">password should vaild </p>
+            </div>
+        </div>
+       
+     <div class="d-flex justify-content-end gap-2">
+<button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal">
+   Forget password
+  </button>
+  <button [disabled]="loginForm.invalid" type="submit" class="btn btn-outline-dark">Login
+    <i *ngIf="isloading" class="fa-solid fa-cog fa-spin"></i> </button>   
+
+     </div>
+       
+    </form>
+
+</div>
+
+
+
+
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Forget Password</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+
+        <form *ngIf="forgetFlag" [formGroup]="forgetForm" (ngSubmit)="ForgetFormMethod()">
+          <div class="mb-3">
+            <h3 class="text-center text-success">Forget Password</h3>
+            <label for="Email"> Email:</label>
+            <input formControlName="email" class="form-control" type="email">
+            <div *ngIf="forgetForm.get('email')?.errors && forgetForm.get('email')?.touched "
+                class="alert alert-danger">
+                <p *ngIf="forgetForm.get('email')?.errors?.['required']">email is required.</p>
+                <p *ngIf="forgetForm.get('email')?.errors?.['email']">email should vaild </p>
+            </div>
+          
+        </div>
+        <button [disabled]="forgetForm.invalid" type="submit" class="btn btn-outline-dark">Forget
+          <i *ngIf="isloading" class="fa-solid fa-cog fa-spin"></i> </button>   
+      
+        
+        </form>
+
+
+        <form *ngIf="verifyFlag" [formGroup]="verifyFrom" (ngSubmit)="VerifyFormMethod()">
+          <div class="mb-3">
+            <h3 class="text-center text-success">Verify Form</h3>
+            <label for="resetCode"> resetCode:</label>
+            <input formControlName="resetCode" class="form-control" >
+            <div *ngIf="verifyFrom.get('resetCode')?.errors && verifyFrom.get('resetCode')?.touched "
+                class="alert alert-danger">
+                <p *ngIf="verifyFrom.get('resetCode')?.errors?.['required']">resetCode is required.</p>
+            </div>
+          
+        </div>
+        <button [disabled]="verifyFrom.invalid" type="submit" class="btn btn-outline-dark">Verify
+          <i *ngIf="isloading" class="fa-solid fa-cog fa-spin"></i> </button>   
+      
+        
+        </form>
+
+
+        <form *ngIf="newPassFlag" [formGroup]="newPasswordForm" (ngSubmit)="newPassFormMethod()">
+          <div class="mb-3">
+            <h3 class="text-center text-success">New password Form</h3>
+              <label for="Email"> Email:</label>
+              <input formControlName="email" class="form-control" type="email">
+              <div *ngIf="newPasswordForm.get('email')?.errors && newPasswordForm.get('email')?.touched "
+                  class="alert alert-danger">
+                  <p *ngIf="newPasswordForm.get('email')?.errors?.['required']">email is required.</p>
+                  <p *ngIf="newPasswordForm.get('email')?.errors?.['email']">email should vaild </p>
+              </div>
+          </div>
+          <div class="mb-3">
+              <label for="Password">password:</label>
+              <input formControlName="newPassword" class="form-control" type="password">
+              <div *ngIf="newPasswordForm.get('newPassword')?.errors && newPasswordForm.get('newPassword')?.touched "
+                  class="alert alert-danger">
+                  <p *ngIf="newPasswordForm.get('newPassword')?.errors?.['required']">password is required.</p>
+                  <p *ngIf="newPasswordForm.get('newPassword')?.errors?.['pattern']">password should vaild </p>
+              </div>
+          </div>
+
+    <button [disabled]="newPasswordForm.invalid" type="submit" class="btn btn-outline-dark">Set New Password
+      <i *ngIf="isloading" class="fa-solid fa-cog fa-spin"></i> </button>   
+  
+      
+      </form>
+
+
+
+        </div>
+      </div>
+    </div>
+  </div>

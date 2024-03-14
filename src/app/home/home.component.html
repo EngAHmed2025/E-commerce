@@ -1,0 +1,62 @@
+
+
+
+
+<div class="row">
+    <div class="col-md-9">
+        <owl-carousel-o [options]="customOptions">
+            <ng-container *ngFor="let slide of HomeData?.data">
+                <ng-template carouselSlide >
+                    <img class="w-100" height="540" [src]="slide.imageCover" >
+                </ng-template>
+            </ng-container>
+        </owl-carousel-o>
+   </div>
+
+<div class="col-md-3">
+<img class="w-100" src="assets/XCM_Manual_1396328_4379575_Egypt_EG_BAU_GW_DC_SL_Bags_Wallets_379x304_1X._SY304_CB650636675_.jpg" alt="">
+<img class="w-100" src="assets/XCM_Manual_1533480_5305769_379x304_1X._SY304_CB616236518_.jpg" alt="">
+</div>
+
+</div>
+
+
+
+
+<section class="py-4 text-center">
+<h2 class="text-capitalize">Popular categories</h2>
+<owl-carousel-o [options]="CategoryOptions">
+    <ng-container *ngFor="let slide of categories">
+        <ng-template carouselSlide >
+            <img class="w-100" height="400"[alt]="slide.name" [src]="slide.image" [title]="slide.name" >
+            <h3 class="h6 text-success">{{slide.name}}</h3>
+        </ng-template>
+    </ng-container>
+</owl-carousel-o>
+
+</section>
+
+
+
+<div *ngIf="HomeData" class="row">
+    <div  *ngFor="let product of HomeData.data" class="col-md-2  mb-4">
+        <div [routerLink]="['/DetailsProduct',product._id]" class="product">
+            <img class="w-100" [src]="product.imageCover">
+            <span class="fa-sm text-success">{{product.category.name}}</span>
+            <h1 class="h5 fw-bold">{{product.title.split(" ").slice(0,2).join(" ")}}</h1>
+            <div class="d-flex justify-content-between">
+                <span>{{product.price}}EGP</span>
+                <div>
+                    <i class="fa-solid fa-star"></i>
+                    <span>{{product.ratingsAverage}}</span>
+                </div>
+                
+            </div>
+        </div>
+        <div class="layer d-flex justify-content-between">
+            <button (click)="btnAdd(product._id)" class="btn btn-success">Add<i class="fa fa-solid fa-cart-shopping p-1"></i></button>
+            <i *ngIf="!wishListData.includes(product._id)" (click)="addWish(product._id)" class="fa-regular fa-2x fa-heart "></i>
+            <i *ngIf="wishListData.includes(product._id)" (click)="removewisList(product._id)" class="fa fa-solid fa-heart fa-2x"></i>
+        </div>
+    </div>
+</div>
